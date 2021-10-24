@@ -2,8 +2,8 @@
 #include "TXLib.h"
 
 void FillArray  (int data[], int size);
-void FindMax    (int data[], int size);
-void FindMin    (int data[], int size);
+int FindMax    (int data[], int size);
+int FindMin    (int data[], int size);
 void PrintArray (const int data[], int size, const char title[]);
 
 //---------------------------------------------------------
@@ -16,8 +16,12 @@ int main ()
 
     printf ("\n");
 
-    FindMax (data, 20);
-    FindMin (data, 20);
+    int Max_element = FindMax (data, 20);
+    printf ("iMax = %d  значение элемента = %d \n", Max_element, data[Max_element]);
+
+    int Min_element = FindMin (data, 20);
+    printf ("\n iMin = %d  значение элемента = %d \n", Min_element, data[Min_element]);
+
 
     return 0;
     }
@@ -30,13 +34,13 @@ void FillArray (int data[], int size)
         {
         assert (0 <= i && i < size); // проверка выхода за край
 
-        data[i] = rand() % RAND_MAX;
+        data[i] = rand() % 1000 * 100 + i;
 
         }
      }
 
 //---------------------------------------------------------
-void FindMax (int data[], int size)
+int FindMax (int data[], int size)
     {
     int iMax = 0;
     int DataMax = data[0];
@@ -44,13 +48,15 @@ void FindMax (int data[], int size)
         {
         assert (0 <= i && i < size); // проверка выхода за край
 
-        if (data[i] > DataMax) {iMax = i; DataMax = data[i];}
+        if (data[i] > DataMax) iMax = i;
         }
-    printf ("\n iMax = %d значение элемента %d \n", iMax, DataMax);
+
+    return iMax;
+    //printf ("\n iMax = %d значение элемента %d \n", iMax, data[iMax]);
     }
 
 //---------------------------------------------------------
-void FindMin (int data[], int size)
+int FindMin (int data[], int size)
     {
     int iMin = 0;
     int DataMin = data[0];
@@ -58,9 +64,11 @@ void FindMin (int data[], int size)
         {
         assert (0 <= i && i < size); // проверка выхода за край
 
-        if (data[i] < DataMin) {iMin = i; DataMin = data[i];}
+        if (data[i] < DataMin) iMin = i;
         }
-    printf ("\n iMin = %d  значение элемента = %d \n", iMin, DataMin);
+
+    return iMin;
+    //printf ("\n iMin = %d  значение элемента = %d \n", iMin, data[iMin]);
     }
 
 //---------------------------------------------------------
