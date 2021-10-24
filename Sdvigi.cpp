@@ -4,7 +4,7 @@
 void FillArray  (int data[], int size);
 void Perevorot (int data[], int size, int step);
 void PrintArray (const int data[], int size, const char title[]);
-void SdvigL (int data[], int size, int cut);
+void SdvigBloka (int data[], int size, int cut);
 //void SdvigRight (int data[], int size);
 
 //---------------------------------------------------------
@@ -12,23 +12,23 @@ int main ()
     {
     int data[20] = {};
 
-    FillArray   (data, 20);
-    PrintArray  (data, 20, "Начальный массив");
+    //FillArray   (data, 20);
+    //PrintArray  (data, 20, "Начальный массив");
 
     printf ("\n");
 
     FillArray   (data, 20);
-    SdvigL      (data, 20, 19);
+    SdvigBloka  (data, 20, 19);
     PrintArray  (data, 20, "Сдвиг вправо");
 
     FillArray   (data, 20);
-    SdvigL      (data, 20, 1);
+    SdvigBloka  (data, 20, 1);
     PrintArray  (data, 20, "Сдвиг влево");
 
     printf ("\n");
 
     FillArray   (data, 20);
-    SdvigL      (data, 20, 5);
+    SdvigBloka  (data, 20, 5);
     PrintArray  (data, 20, "Замена кусочков");
 
     return 0;
@@ -60,13 +60,13 @@ void Perevorot (int data[], int size, int step)
         assert (0 <= size - (i + 1) && size - (i + 1) < size);
         assert (0 <= i + 1          && i + 1    < size);
 
-        dop = data[i];
-        data[i] = data[size - (i + 1)];
+        dop                  = data[i];
+        data[i]              = data[size - (i + 1)];
         data[size - (i + 1)] = dop;
         }
     }
 //--------------------------------------------------------
-void SdvigL (int data[], int size, int cut)
+void SdvigBloka (int data[], int size, int cut)
     {
     Perevorot (data, cut, 1);
     Perevorot (data, size, 1);
