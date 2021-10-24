@@ -44,9 +44,9 @@ void FindMax (int data[], int size)
         {
         assert (0 <= i && i < size); // проверка выхода за край
 
-        if (data[i] > DataMax) iMax = i;
+        if (data[i] > DataMax) {iMax = i; DataMax = data[i];}
         }
-    printf ("\n iMax = %d\n", iMax);
+    printf ("\n iMax = %d значение элемента %d \n", iMax, DataMax);
     }
 
 //---------------------------------------------------------
@@ -58,9 +58,9 @@ void FindMin (int data[], int size)
         {
         assert (0 <= i && i < size); // проверка выхода за край
 
-        if (data[i] < DataMin) iMin = i;
+        if (data[i] < DataMin) {iMin = i; DataMin = data[i];}
         }
-    printf ("\n iMax = %d\n", iMin);
+    printf ("\n iMin = %d  значение элемента = %d \n", iMin, DataMin);
     }
 
 //---------------------------------------------------------
