@@ -5,6 +5,7 @@ void FillArray  (int data[], int size);
 void Perevorot (int data[], int size, int step);
 void PrintArray (const int data[], int size, const char title[]);
 void SdvigL (int data[], int size, int cut);
+//void SdvigRight (int data[], int size);
 
 //---------------------------------------------------------
 int main ()
@@ -16,11 +17,19 @@ int main ()
 
     printf ("\n");
 
-    //Perevorot (data, 20, 2);
-    //PrintArray  (data, 20, "Переворот массива");
+    FillArray   (data, 20);
+    SdvigL      (data, 20, 19);
+    PrintArray  (data, 20, "Сдвиг вправо");
 
-    SdvigL (data, 20, 5);
+    FillArray   (data, 20);
+    SdvigL      (data, 20, 1);
     PrintArray  (data, 20, "Сдвиг влево");
+
+    printf ("\n");
+
+    FillArray   (data, 20);
+    SdvigL      (data, 20, 5);
+    PrintArray  (data, 20, "Замена кусочков");
 
     return 0;
     }
@@ -33,7 +42,7 @@ void FillArray (int data[], int size)
         {
         assert (0 <= i && i < size); // проверка выхода за край
 
-        data[i] = rand() % RAND_MAX * 100 + i;
+        data[i] = rand() % 1000 * 100 + i;
 
         }
      }
@@ -52,11 +61,9 @@ void Perevorot (int data[], int size, int step)
         assert (0 <= i + 1          && i + 1    < size);
 
         dop = data[i];
-        data[i]     = data[size - (i + 1)];
+        data[i] = data[size - (i + 1)];
         data[size - (i + 1)] = dop;
-
         }
-
     }
 //--------------------------------------------------------
 void SdvigL (int data[], int size, int cut)
@@ -66,7 +73,27 @@ void SdvigL (int data[], int size, int cut)
     Perevorot (data, size - cut, 1);
 
     }
+
 //---------------------------------------------------------
+/*void SdvigRight (int data[], int size)
+    {
+    int buf = data[size - 1];
+    for (int i = 0; i < size/2; i ++)
+        {
+        //printf ("[i]%d", size - i);
+
+        assert (0 <= i              && i        < size); // проверка выхода за край
+        assert (0 <= size - (i + 1) && size - (i + 1) < size);
+        assert (0 <= i + 1          && i + 1    < size);
+
+        int dop = data[i];
+        data[i] = data[size - (i + 1)];
+        data[size - (i + 1)] = dop;
+        }
+    data[0] = buf;
+    }
+
+ //---------------------------------------------------------
 /*void SdvigL (int data[], int size, int cut)
     {
     int dop = 0;
