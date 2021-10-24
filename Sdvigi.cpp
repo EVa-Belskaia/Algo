@@ -16,10 +16,10 @@ int main ()
 
     printf ("\n");
 
-    Perevorot (data, 20, 2);
-    PrintArray  (data, 20, "Переворот массива");
+    //Perevorot (data, 20, 2);
+    //PrintArray  (data, 20, "Переворот массива");
 
-    SdvigL (data, 20, 3);
+    SdvigL (data, 20, 5);
     PrintArray  (data, 20, "Сдвиг влево");
 
     return 0;
@@ -58,9 +58,16 @@ void Perevorot (int data[], int size, int step)
         }
 
     }
-
-//---------------------------------------------------------
+//--------------------------------------------------------
 void SdvigL (int data[], int size, int cut)
+    {
+    Perevorot (data, cut, 1);
+    Perevorot (data, size, 1);
+    Perevorot (data, size - cut, 1);
+
+    }
+//---------------------------------------------------------
+/*void SdvigL (int data[], int size, int cut)
     {
     int dop = 0;
 
@@ -90,7 +97,7 @@ void SdvigL (int data[], int size, int cut)
         data[size - (i + 1)] = dop;
 
         }
-    }
+    }   */
 
 //---------------------------------------------------------
 void PrintArray (const int data[], int size, const char title[])
