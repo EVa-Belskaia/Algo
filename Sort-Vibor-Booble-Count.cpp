@@ -64,12 +64,15 @@ void FillArray (int data[], int size)
 //---------------------------------------------------------
 void Sort_Vibor (int data[], int size)
     {
+    int countSrav  = 0;
+    int countObmen = 0;
     for (int i = 0; i < size; i ++)
         {
         assert (0 <= i && i < size);
 
         int iMin = i;
         int DataMin = data[iMin];
+
         for (int j = i + 1; j < size; j ++)
             {
             assert (0 <= j     && j    < size); // проверка выхода за край
@@ -79,8 +82,14 @@ void Sort_Vibor (int data[], int size)
                 iMin = j ;
                 DataMin = data[j];
                 printf ("* .");
+                countSrav ++;
+                countObmen ++;
                 }
-            else printf ("* ");
+            else
+                {
+                printf ("* ");
+                countSrav ++;
+                }
             }
 
         int dop    = data[i];
@@ -89,10 +98,13 @@ void Sort_Vibor (int data[], int size)
 
         //Print1str (data, size, &i);
         }
+    printf ("\n Sravnenii = %d\n Obmenov = %d\n", countSrav, countObmen);
     }
 //---------------------------------------------------------
 void SortBooble (int data[], int size)
     {
+    int countSrav  = 0;
+    int countObmen = 0;
     for (int i = 0; i < size; i ++)
         {
         assert (0 <= i && i < size);
@@ -105,14 +117,22 @@ void SortBooble (int data[], int size)
             if (data[j] < data[j - 1])
                 {
                 printf ("* . ");
+                countSrav  ++;
+                countObmen ++;
+
                 int dop         = data[j];
                     data[j]     = data[j - 1];
                     data[j - 1] = dop;
                 }
-            else printf ("* ");
+            else
+                {
+                printf ("* ");
+                countSrav ++;
+                }
              }
          //Print1str (data, size, &i);
          }
+     printf ("\n Sravnenii = %d\n Obmenov = %d\n", countSrav, countObmen);
      }
 
 //---------------------------------------------------------
