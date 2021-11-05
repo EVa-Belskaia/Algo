@@ -1,25 +1,31 @@
 #include <iostream>
 #include "TXLib.h"
-#include "AlgoPrint-2.h"
+
 
 void FillArray  (int data[], int size);
 void Sort_Vibor (int data[], int size);
-void Pint1str   (int data[], int size, int* i);
+void Print1str  (int data[], int size, int* i);
+void PrintArray (const int data[], int size, int Dlina, const char title[]);
+void SortBooble (int data[], int size);
+
 
 //---------------------------------------------------------
 int main ()
     {
     int data[20] = {};
 
-    FillArray   (data, 6);
-    PrintArray  (data, 6, 6, "Начальный массив");
+    FillArray   (data, 10);
+    PrintArray  (data, 10, 10, "Начальный массив");
 
     printf ("\n");
 
-    printf ("Сортировка 1: \n\n");
+    printf ("Сортировка 1: \n");
 
-    Sort_Vibor (data, 6);
-    //PrintArray  (data, 6, 6, "Поменяли пары местами");
+   // Sort_Vibor (data, 10);
+   // PrintArray  (data, 10, 10, "Отсортированный массив");
+
+    SortBooble (data, 10);
+    PrintArray  (data, 10, 10, "Отсортированный массив");
 
     return 0;
     }
@@ -32,7 +38,7 @@ void FillArray (int data[], int size)
         {
         assert (0 <= i && i < size); // проверка выхода за край
 
-        data[i] = rand() % 1000;// * 100 + i;
+        data[i] =rand() % 10 * 100 + i;
 
         }
      }
@@ -49,24 +55,47 @@ void Sort_Vibor (int data[], int size)
         for (int j = i + 1; j < size; j ++)
             {
             assert (0 <= j     && j    < size); // проверка выхода за край
-            //assert (0 <= j + 1 && j + 1< size);
 
             if (data[j] <= DataMin)
                 {
                 iMin = j ;
                 DataMin = data[j];
+                printf ("* .");
                 }
+            else printf ("* ");
             }
 
-        int dop = data[i];
-        data[i]     = data[iMin];
+        int dop    = data[i];
+        data[i]    = data[iMin];
         data[iMin] = dop;
 
-        Pint1str (data, size, &i);
+        //Print1str (data, size, &i);
         }
     }
 //---------------------------------------------------------
-void Pint1str (int data[], int size, int* i)
+void SortBooble (int data[], int size)
+    {
+    for (int i = 0; i < size; i ++)
+        {
+        assert (0 <= i && i < size);
+
+        for (int j = size - 1; j > i; j --)
+            {
+            assert (0 <= j && j < size);
+
+            if (data[j] < data[j - 1])
+                {
+                int dop         = data[j];
+                    data[j]     = data[j - 1];
+                    data[j - 1] = dop;
+                }
+             }
+         Print1str (data, size, &i);
+         }
+     }
+
+//---------------------------------------------------------
+void Print1str (int data[], int size, int* i)
     {
     for (int p = 0; p < (*i) + 1; p ++)
         {
@@ -90,7 +119,8 @@ void Pint1str (int data[], int size, int* i)
     $d
     printf ("\n");
     }
-/*void PrintArray (const int data[], int size, int Dlina, const char title[])
+//-------------------------------------------------------------------------
+void PrintArray (const int data[], int size, int Dlina, const char title[])
     {
     $g; printf ("\n%s:", title);
     printf ("\n");
@@ -102,10 +132,10 @@ void Pint1str (int data[], int size, int* i)
         if (i % Dlina == 0) printf ("\n");
 
         $c; printf ("[%2d] = ", i);
-        $g; printf ("%6d", data[i]);
+        $g; printf ("%5d", data[i]);
         $c; printf (", ");
         }
 
     printf (" END");
     $d
-    }  */
+    }
